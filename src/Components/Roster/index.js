@@ -2,9 +2,10 @@ import React from 'react';
 import MemberCard from '../MemberCard';
 import axios from 'axios';
 import { Row, Col } from 'antd';
+import * as Constants from '../../Constants'; 
 
-function FetchRoster() {
-    return axios.get('https://94fyda15f0.execute-api.us-east-1.amazonaws.com/Prod/api/classes/1/roster');
+function FetchRoster(classId) {
+    return axios.get(`${Constants.BASE_URL}/classes/${classId}/roster`);
 };
 
 export default class Roster extends React.Component {
@@ -15,15 +16,18 @@ export default class Roster extends React.Component {
         };
     }
     render() {
-        const { roster } = this.state;
+        const { roster } = this.props;
         return (
-            <div>
+            <div style={{
+                width: "100%"
+            }}>
                 <Row gutter={[10, 10]} style={{
                     padding: 10
                 }}>
                 {
-                    roster.map(member => <Col key={member.id} span={8}>
-                        <MemberCard info={member}/>
+                    (roster || []).length === 0 ? "No members" :
+                    roster.map(member => <Col key={member.id} span={8} md={12}>
+                        <MemberCard classId={this.props.classId} info={member} startSubcribers={this.props.startSubcribers} stopSubcribers={this.props.stopSubcribers} joinSubcribers={this.props.joinSubcribers}/>
                     </Col>)
                 }
                 </Row>
@@ -31,7 +35,8 @@ export default class Roster extends React.Component {
         );
     }
     componentDidMount() {
-        FetchRoster()
+        /*
+        FetchRoster(this.props.classId)
             .then(res => {
                 console.log('SUCCESS', res);
                 this.setState({
@@ -39,5 +44,6 @@ export default class Roster extends React.Component {
                 })
             })
             .catch(err => console.log('ERROR', 'Failure to fetch roster', err));
+        */
     }
 }
