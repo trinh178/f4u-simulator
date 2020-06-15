@@ -27,7 +27,7 @@ export default class Roster extends React.Component {
                 {
                     (roster || []).length === 0 ? "No members" :
                     roster.map(member => <Col key={member.id} span={8} md={12}>
-                        <MemberCard classId={this.props.classId} info={member} startSubcribers={this.props.startSubcribers} stopSubcribers={this.props.stopSubcribers} joinSubcribers={this.props.joinSubcribers}/>
+                        <MemberCard classId={this.props.classId} info={member} startSubcribers={this.props.startSubcribers} stopSubcribers={this.props.stopSubcribers} joinSubcribers={this.props.joinSubcribers} resetSubcribers={this.props.resetSubcribers}/>
                     </Col>)
                 }
                 </Row>

@@ -1,12 +1,11 @@
 import React from 'react';
 import { Roster } from './Components';
-import { Row, Col, Button, Input, Modal, Menu, Dropdown, Avatar } from 'antd';
+import { Row, Col, Button, Input, Modal, Menu, Dropdown, Avatar, Select } from 'antd';
 import axios from 'axios';
 import * as Constants from './Constants';
 
 function parseQueryString() {
   const str = window.location.search;
-  console.log('search', str)
   const objURL = {};
 
   str.replace(
@@ -40,6 +39,7 @@ class App extends React.Component {
     this.startSubcribers = [];
     this.stopSubcribers = [];
     this.joinSubcribers = [];
+    this.resetSubcribers = [];
 
     this.Renew = (id) => {
       window.location.reload();
@@ -71,6 +71,15 @@ class App extends React.Component {
     };
     this.JoinAll = () => {
       this.joinSubcribers.forEach(run => run());
+    }
+    this.Reset = () => {
+      this.setState({
+        isRenewwing: true
+      });
+      this.resetSubcribers.forEach(run => run());
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
 
     // Modal
@@ -116,32 +125,45 @@ class App extends React.Component {
         });
       });
     }
+
+    //
+    this.selectEnv = (env) => {
+      window.location.href = "/f4u-emulator-tools?env=" + env
+    }
   }
   render() {
     const params = parseQueryString();
-    console.log(params);
     const classId = parseInt(params.classId) || 1;
     return (
       <div>
+        <Row>
+          <Col>
+            <span style={{
+              fontWeight: "bold",
+              fontSize: 16
+            }}>Evironment </span>
+            <Select style={{
+              width: 100
+            }} value={Constants.ENV} onChange={this.selectEnv}>
+              <Select.Option value="dev">
+                DEV
+              </Select.Option>
+              <Select.Option value="tic">
+                TIC
+              </Select.Option>
+            </Select>
+          </Col>
+        </Row>
         <Row gutter={10}>
-          {/*
-          <Col>
-            <Button type='primary' onClick={() => {
-              this.startSubcribers.forEach(element => {
-                
-              });
-            }}>Start all</Button>
-          </Col>
-          <Col>
-            <Button type='primary'>Stop all</Button>
-          </Col>
-          */}
           <Col>
             <Button loading={this.state.isRenewwing} type='primary' onClick={() => {
+              /*
               this.setState({
                 isRenewwing: true
               })
               this.Renew(1);
+              */
+             this.Reset();
             }}>Reset</Button>
           </Col>
           <Col>
@@ -163,7 +185,7 @@ class App extends React.Component {
             <Input.Search
               placeholder="class id"
               onSearch={value => {
-                window.location.href = "/f4u-emulator-tools?classId=" + value
+                window.location.href = `/f4u-emulator-tools?env=${Constants.ENV}&classId=${value}`
               }}
               style={{ width: 200 }}
             />
@@ -175,7 +197,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col span={24}>
-            <Roster roster={this.state.rosters} classId={classId} startSubcribers={this.startSubcribers} stopSubcribers={this.stopSubcribers} joinSubcribers={this.joinSubcribers}/>
+            <Roster roster={this.state.rosters} classId={classId} startSubcribers={this.startSubcribers} stopSubcribers={this.stopSubcribers} joinSubcribers={this.joinSubcribers} resetSubcribers={this.resetSubcribers}/>
           </Col>
         </Row>
         <Modal

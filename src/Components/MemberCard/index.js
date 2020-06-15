@@ -158,8 +158,6 @@ export default class MemberCard extends React.Component {
             status: props.info.status
         };
 
-        // Renew
-        RenewPerformace(this.props.info.memberInfo.id, this.props.classId);
         // Reset status
         this.UpdateStatus = (status) => {
             axios.post(`${Constants.BASE_URL}/classes/${this.props.classId}/updateMember`, {
@@ -172,7 +170,18 @@ export default class MemberCard extends React.Component {
                 });
             })
         };
-        this.UpdateStatus('Booked');
+        //this.UpdateStatus('Booked');
+
+        // Reset
+        this.Unbook = () => {
+            axios.post(`${Constants.BASE_URL}/classes/${this.props.classId}/removeMember`, {
+                ClassId: this.props.classId,
+                MemberId: this.props.info.memberInfo.id,
+            })
+        }
+        this.ResetPerformance = () => {
+            RenewPerformace(this.props.info.memberInfo.id, this.props.classId);
+        };
 
         this.RunEmulator = () => {
             if (this.state.status === 'Checked-in' && !this.state.isEmulatorRun) {
@@ -242,6 +251,11 @@ export default class MemberCard extends React.Component {
         this.props.stopSubcribers.push(this.StopEmulator);
         this.props.joinSubcribers.push(() => {
             this.UpdateStatus('Checked-in');
+        });
+        this.props.resetSubcribers.push(() => {
+            this.StopEmulator();
+            this.ResetPerformance();
+            this.UpdateStatus('Booked');
         });
     }
 
