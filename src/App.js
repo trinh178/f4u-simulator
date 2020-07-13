@@ -128,7 +128,7 @@ class App extends React.Component {
 
     //
     this.selectEnv = (env) => {
-      window.location.href = "/f4u-emulator-tools?env=" + env
+      window.location.href = "/f4u-simulator?env=" + env
     }
   }
   render() {
@@ -185,7 +185,7 @@ class App extends React.Component {
             <Input.Search
               placeholder="class id"
               onSearch={value => {
-                window.location.href = `/f4u-emulator-tools?env=${Constants.ENV}&classId=${value}`
+                window.location.href = `/f4u-simulator?env=${Constants.ENV}&classId=${value}`
               }}
               style={{ width: 200 }}
             />

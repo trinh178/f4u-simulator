@@ -1,6 +1,6 @@
 {
-  "homepage": "http://trinh178.github.io/f4u-emulator-tools",
-  "name": "f4u-emulator-tools",
+  "homepage": "http://trinh178.github.io/f4u-simulator",
+  "name": "f4u-simulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
