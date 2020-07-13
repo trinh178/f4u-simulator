@@ -12,7 +12,7 @@ function parseQueryString() {
 };
 
 const DEV_ENDPOINT = "https://gya6ha83ql.execute-api.ap-southeast-1.amazonaws.com/Dev/api";
-const TIC_ENDPOINT = "http://f4u-tic.ap-southeast-1.elasticbeanstalk.com/api";
+const TIC_ENDPOINT = "https://bho5ndseoh.execute-api.ap-southeast-1.amazonaws.com/Tic/api";
 export let ENV = "dev";
 switch (parseQueryString().env) {
     case "dev":
