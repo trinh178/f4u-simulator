@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b22d04da1f0b5efec0326b66ae53f010",
+    "revision": "83003cef9fc2b06ea646c18e48c4e6cf",
     "url": "/f4u-simulator/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/f4u-simulator/static/css/2.4c6ee7a4.chunk.css"
   },
   {
-    "revision": "6453a9216fd56a62d295",
+    "revision": "4d1057d2b8f81bbcaa8e",
     "url": "/f4u-simulator/static/css/main.d2e714af.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/f4u-simulator/static/js/2.31bdb60a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6453a9216fd56a62d295",
-    "url": "/f4u-simulator/static/js/main.0b3e6baf.chunk.js"
+    "revision": "4d1057d2b8f81bbcaa8e",
+    "url": "/f4u-simulator/static/js/main.05f611b7.chunk.js"
   },
   {
     "revision": "94ceb2562b37fb0d761f",

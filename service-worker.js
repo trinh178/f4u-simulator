@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/f4u-simulator/precache-manifest.b734f20fd932e2c1db95eaa5da196e99.js"
+  "/f4u-simulator/precache-manifest.ab91d7a87d12df60d81ed6f588ce23ed.js"
 );
 
 self.addEventListener('message', (event) => {
